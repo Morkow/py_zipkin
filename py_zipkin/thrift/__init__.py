@@ -106,8 +106,8 @@ def annotation_list_builder(annotations, host):
     return [
         create_annotation(int(timestamp * 1000000), key, host)
         for key, timestamp in annotations.items()
+        if key not in ['ss', 'sr', 'cs', 'cr']
     ]
-
 
 def binary_annotation_list_builder(binary_annotations, host):
     """

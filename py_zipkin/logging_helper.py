@@ -320,11 +320,6 @@ def log_span(
     if not transport_handler:
         return
 
-    annotations.pop('ss', None)
-    annotations.pop('sr', None)
-    annotations.pop('cs', None)
-    annotations.pop('cr', None)
-
     span = create_span(
         span_id,
         parent_span_id,
