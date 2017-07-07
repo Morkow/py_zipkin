@@ -150,10 +150,11 @@ class ZipkinLoggingContext(object):
                 self.zipkin_attrs.span_id
             ]
 
-            k1, k2 = ('sr', 'ss')
-            if self.client_context:
-                k1, k2 = ('cs', 'cr')
-            annotations = {k1: self.start_timestamp, k2: end_timestamp}
+            # k1, k2 = ('sr', 'ss')
+            # if self.client_context:
+            #     k1, k2 = ('cs', 'cr')
+            # annotations = {k1: self.start_timestamp, k2: end_timestamp}
+            annotations = {}
             annotations.update(extra_annotations)
 
             if self.add_logging_annotation:
