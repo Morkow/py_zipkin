@@ -323,6 +323,10 @@ class zipkin_span(object):
         popped off. The actual logging of spans depends on sampling and that
         the logging was correctly set up.
         """
+        self.update_binary_annotations({
+            'lc': self.service_name,
+        })
+
         if self.do_pop_attrs:
             pop_zipkin_attrs()
 
