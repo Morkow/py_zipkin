@@ -150,11 +150,10 @@ class ZipkinLoggingContext(object):
                 self.zipkin_attrs.span_id
             ]
 
-            # k1, k2 = ('sr', 'ss')
-            # if self.client_context:
-            #     k1, k2 = ('cs', 'cr')
-            # annotations = {k1: self.start_timestamp, k2: end_timestamp}
-            annotations = {}
+            k1, k2 = ('sr', 'ss')
+            if self.client_context:
+                k1, k2 = ('cs', 'cr')
+            annotations = {k1: self.start_timestamp, k2: end_timestamp}
             annotations.update(extra_annotations)
 
             if self.add_logging_annotation:
@@ -320,6 +319,11 @@ def log_span(
     # Be defensive about the lack of a transport handler
     if not transport_handler:
         return
+
+    annotations.pop('ss', None)
+    annotations.pop('sr', None)
+    annotations.pop('cs', None)
+    annotations.pop('cr', None)
 
     span = create_span(
         span_id,
